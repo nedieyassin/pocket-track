@@ -1,0 +1,71 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TransactionCategoryType {
+  INCOME
+  EXPENSE
+}
+
+enum TransactionType {
+  INCOME
+  EXPENSE
+}
+
+model User {
+  id                    String                @id
+  currency              String                @default("$")
+  wallet                Wallet[]
+  transactions          Transaction[]
+  transactionCategories TransactionCategory[]
+}
+
+model Wallet {
+  id           String        @id @default(uuid()) @db.Uuid
+  icon         String
+  color        String
+  name         String
+  balance      Decimal       @default(0) @db.Decimal(12, 2)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  userId       String
+  user         User          @relation(fields: [userId], references: [id])
+  transactions Transaction[]
+}
+
+model TransactionCategory {
+  id           String                  @id @default(uuid()) @db.Uuid
+  type         TransactionCategoryType
+  name         String
+  createdAt    DateTime                @default(now())
+  updatedAt    DateTime                @updatedAt
+  userId       String?
+  user         User?                   @relation(fields: [userId], references: [id])
+  transactions Transaction[]
+}
+
+model Transaction {
+  id                    String              @id @default(uuid()) @db.Uuid
+  type                  TransactionType
+  name                  String
+  amount                Decimal             @default(0) @db.Decimal(12, 2)
+  isTransfer            Boolean             @default(false)
+  date                  DateTime
+  notes                 String?
+  createdAt             DateTime            @default(now())
+  updatedAt             DateTime            @updatedAt
+  userId                String
+  walletId              String              @db.Uuid
+  transactionCategoryId String              @db.Uuid
+  user                  User                @relation(fields: [userId], references: [id])
+  wallet                Wallet              @relation(fields: [walletId], references: [id])
+  transactionCategory   TransactionCategory @relation(fields: [transactionCategoryId], references: [id])
+}
