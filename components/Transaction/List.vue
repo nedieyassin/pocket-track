@@ -5,7 +5,7 @@ import type {ITransaction, IWallet} from "~/types";
 
 const props = defineProps({
   wallet: {
-    type: [Object as PropType<IWallet>, null],
+    type: Object as PropType<IWallet> | null,
     required: true,
   },
 });
