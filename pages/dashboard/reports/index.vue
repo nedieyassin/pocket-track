@@ -91,8 +91,8 @@ const {
             </div>
           </div>
           <div v-else class="grid md:grid-cols-2 gap-6 md:pr-6">
-            <ReportExpense :data="report?.groupedResult?.INCOME"/>
-            <ReportIncome :data="report?.groupedResult?.EXPENSE"/>
+            <ReportExpense :data="report?.groupedResult?.EXPENSE"/>
+            <ReportIncome :data="report?.groupedResult?.INCOME"/>
           </div>
         </div>
       </div>
