@@ -75,7 +75,7 @@ const handleSubmit = () => {
 </script>
 
 <template>
-  <div class="flex fixed justify-center top-0 items-end md:items-start w-screen h-screen">
+  <div class="flex fixed justify-center top-0 items-end pb-20 md:items-start w-screen h-screen">
     <div
         class="fixed backdrop-blur top-0 left-0 h-screen w-screen  z-50">
     </div>

@@ -39,10 +39,14 @@ watchDebounced(() => currency.value, () => {
               <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
                 <div class="col-span-full flex items-center gap-x-8">
                   <img alt="" loading="lazy" width="512" height="512"
+                       v-if="auth?.user?.picture"
                        decoding="async" data-nimg="1"
                        class="h-24 w-24 flex-none object-cover rounded-full"
                        style="color:transparent"
                        :src="auth?.user?.picture">
+                  <div v-else class="h-24 w-24 flex items-center justify-center bg-gray-300 rounded-full">
+                    <UIcon name="lucide:user-2" class="text-4xl"/>
+                  </div>
                   <div>
                     <h1 class="font-bold text-3xl">{{ auth?.user?.given_name }} {{ auth?.user?.family_name }}</h1>
                     <h2 class="">{{ auth?.user?.email }}</h2>

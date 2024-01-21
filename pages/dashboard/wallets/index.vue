@@ -7,12 +7,12 @@ definePageMeta({
 })
 
 
-const {data: wallets, pending} = useFetch<IWallet[]>('/api/wallets')
+const {data: wallets, pending, refresh} = useFetch<IWallet[]>('/api/wallets')
 
 
 const handleWallet = () => {
   useWalletDialog().then((res) => {
-
+    refresh();
   })
 }
 
