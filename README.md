@@ -1,75 +1,43 @@
-# Nuxt 3 Minimal Starter
+# Pocket Track
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Overview
 
-## Setup
+Pocket Track is a personal financial tracking web app designed to empower individuals to take control of their finances.
+It allows users to easily manage expenses, and gain insights into their spending habits through intuitive
+visualizations.
 
-Make sure to install the dependencies:
+## Demo
 
-```bash
-# npm
-npm install
+[Live Demo](https://pocket-track.up.railway.app/)
 
-# pnpm
-pnpm install
+## Technologies Used
 
-# yarn
-yarn install
+- **Frontend:** [Nuxt 3](https://nuxt.com/), [Tailwind](https://tailwindcss.com/), [Vue](https://vuejs.org/)
+- **Backend:** [Typescript](https://www.typescriptlang.org/), [Prisma](https://www.prisma.io/), [Kinde](https://kinde.com/)
+- **Database:** [PostgreSQL](https://www.postgresql.org/)
+- **Hosting:** [railway.app](https://railway.app/)
 
-# bun
-bun install
-```
+## Installation
 
-## Development Server
+1. Clone the repository.
+   ```bash
+   git clone https://github.com/nedieyassin/pocket-track.git 
+   ```
 
-Start the development server on `http://localhost:3000`:
+2. Install dependencies.
+   ```bash
+    cd pocket-track
+   yarn install
+   ```
 
-```bash
-# npm
-npm run dev
+3. Configure the app Database URL and [Kinde](https://kinde.com/)  environment variable this requires a kinde auth account. use `/env.example` for
+   reference.
 
-# pnpm
-pnpm run dev
+4. Run `yarn prisma migrate` to migrate the database.
+5. Run `yarn prisma generate` to generate the Prisma Client.
+6. Run the SQL in `prisma/functions/wallet_balance_trigger.sql` to create the PostgreSQL Functions and Triggers to
+   update the wallet balance when transactions are created, updated, or deleted.
+6. Run `yarn start` to start the app.
+7. Visit `http://localhost:3000` in your browser.
+   
 
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
